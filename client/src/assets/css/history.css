@@ -1,0 +1,110 @@
+.container {
+  color: rgb(113, 106, 97);
+  background-color: rgb(217, 210, 201);
+  padding: 10px 20px;
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.table-header,
+.table-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.table-header {
+  font-weight: bold;
+  border-bottom: 1px solid rgb(136, 132, 128);
+}
+
+.table-header .cell,
+.table-row .cell {
+  flex: 1;
+  text-align: center;
+}
+
+.table-header .cell:first-child,
+.table-row .cell:first-child {
+  flex: 0 0 50px;
+  text-align: left;
+}
+
+.table-header .cell:nth-child(2),
+.table-row .cell:nth-child(2) {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.table-row {
+  border-bottom: 1px solid rgb(136, 132, 128);
+}
+
+.palyers-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.color-box {
+  border-radius: 1px;
+  display: block;
+  flex-shrink: 0;
+  height: 1rem;
+  margin-right: 0.5rem;
+  width: 1rem;
+}
+
+.fl {
+  display: flex;
+  width: 95%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.whbg {
+  background-color: white;
+}
+
+.blbg {
+  background-color: rgb(51, 38, 28);
+}
+
+.title {
+  text-align: center;
+  padding: 50px;
+}
+
+.myText {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.game-el:hover {
+  background-color: rgb(198, 188, 174);
+  cursor: pointer;
+}
+
+@media screen and (orientation: portrait) {
+  .container {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .table-header .cell:first-child,
+  .table-row .cell:first-child {
+    flex: 0 0 20px;
+  }
+
+  .color-box {
+    height: 0.8rem;
+    width: 0.8rem;
+  }
+}

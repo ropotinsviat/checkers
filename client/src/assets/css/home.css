@@ -1,0 +1,142 @@
+main {
+  margin: 50px 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 75px;
+  /* background-color: rgb(217, 210, 201); */
+  background: #fff;
+  border-radius: 30px;
+  gap: 150px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  .board .cell {
+    width: 48px;
+    height: 48px;
+  }
+  .wc::after,
+  .bc::after {
+    width: 40px;
+    height: 40px;
+  }
+}
+.home > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  font-size: 18px;
+
+  div:nth-child(2) {
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+.home > div:first-child > div {
+  color: rgb(113, 106, 97);
+  font-weight: bold;
+  font-size: 28px;
+}
+main button {
+  color: white;
+  background-color: #886b53;
+  border-radius: 25px;
+  border-color: white;
+  border-style: solid;
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 25px 50px;
+  font-weight: bold;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 25px;
+  svg {
+    width: 40px;
+    height: 40px;
+    fill: white;
+  }
+}
+main button:hover {
+  background-color: white;
+  border-color: #886b53;
+  color: #886b53;
+  svg {
+    fill: #886b53;
+  }
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.ideal-center {
+  text-align: center;
+  background-color: rgb(198, 188, 174);
+  padding: 25px 80px;
+  border-radius: 25px;
+  margin: 0 5px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ideal-center > div:nth-child(2) {
+  margin: 35px 0;
+}
+@media screen and (max-width: 1090px) {
+  .home {
+    flex-direction: column;
+    gap: 50px;
+    .board .cell {
+      height: 35px;
+      width: 35px;
+    }
+    .wc::after,
+    .bc::after {
+      width: 30px;
+      height: 30px;
+    }
+    padding: 50px 20px;
+  }
+  main button {
+    padding: 15px 30px;
+    font-size: 22px;
+  }
+}
