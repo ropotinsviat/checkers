@@ -1,0 +1,53 @@
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+CREATE TABLE `game` (
+  `game_id` int(11) NOT NULL AUTO_INCREMENT,
+  `start_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `end_time` datetime DEFAULT NULL,
+  `time_limit` int(11) NOT NULL DEFAULT '180',
+  `winner_color` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`game_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=540 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+CREATE TABLE `player` (
+  `player_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `game_id` int(11) NOT NULL,
+  `color` tinyint(1) NOT NULL,
+  PRIMARY KEY (`player_id`),
+  KEY `player_ibfk_1` (`game_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `player_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `player_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=896 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+CREATE TABLE `room` (
+  `room_id` int(11) NOT NULL AUTO_INCREMENT,
+  `game_id` int(11) NOT NULL,
+  `white_timer` int(11) NOT NULL DEFAULT '0',
+  `black_timer` int(11) NOT NULL DEFAULT '0',
+  `board` char(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '11111111111100000000222222222222',
+  `turn` tinyint(1) NOT NULL DEFAULT '1',
+  `last_move_tst` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `attack_square` char(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`room_id`),
+  KEY `room_ibfk_1` (`game_id`),
+  CONSTRAINT `room_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+CREATE TABLE `move` (
+  `move_id` int(11) NOT NULL AUTO_INCREMENT,
+  `player_id` int(11) NOT NULL,
+  `from_square` char(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `to_square` char(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `move_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`move_id`),
+  KEY `move_ibfk_1` (`player_id`),
+  CONSTRAINT `move_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `player` (`player_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=416 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
